@@ -1,7 +1,7 @@
 [package]
 name = "quincunx"
 version = "0.1.0"
-authors = ["Boris Tatarintsev <btatarintsev@ozon.ru>"]
+authors = ["risboo6909 <ttyv00@gmail.com>"]
 edition = "2018"
 
 [dependencies]
