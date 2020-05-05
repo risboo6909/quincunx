@@ -12,6 +12,6 @@ Hope that Galton board is the right thing.
 
 Ensure you have Rust installed.
 
-1. Install cargo-web subcommand by following instructions from here https://docs.rs/crate/cargo-web/0.6.14
+1. Install cargo-web subcommand by following instructions from here https://docs.rs/crate/cargo-web
 2. Type cargo web start to compile and run project
 3. Type localhost:8000 in your browser, enjoy!
