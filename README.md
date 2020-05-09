@@ -15,3 +15,7 @@ Ensure you have Rust installed.
 1. Install cargo-web subcommand by following instructions from here https://docs.rs/crate/cargo-web
 2. Type cargo web start to compile and run project
 3. Type localhost:8000 in your browser, enjoy!
+
+## see work in progress online!
+
+https://risboo6909.org/quincunx/
