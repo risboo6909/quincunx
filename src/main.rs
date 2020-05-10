@@ -60,9 +60,8 @@ fn main() {
     let mut sphere = world.make_sphere(&mut window, 0.0, 0.0, 0.0, 0.1);
     sphere.set_color(1.0, 0.0, 0.0);
 
-    // let mut b = window.add_cube(1.0, 0.1, 1.0);
-    // b.set_color(0.0, 1.0, 0.0);
-    // b.set_local_translation(na::Translation3::new(0.0, 0.0, 0.0));
+    let mut boxx = world.make_box(&mut window, 0.0, -3.5, 0.0, 1.0, 0.2, 1.0);
+    boxx.set_color(0.0, 1.0, 0.0);
 
     window.set_light(Light::StickToCamera);
 
