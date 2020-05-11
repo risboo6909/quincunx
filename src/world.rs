@@ -91,7 +91,7 @@ impl<'a, N: na::RealField> World<N> {
                 N::from_f32(z).unwrap(),
             ))
             .kinematic_translations(Vector::new(false, true, false))
-            .mass(na::convert(5.0))
+            .mass(na::convert(4.0))
             .build();
         let rb_handle = self.bodies.insert(rb);
 
