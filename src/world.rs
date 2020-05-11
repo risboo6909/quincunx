@@ -146,7 +146,7 @@ impl<'a, N: na::RealField> World<N> {
                                 .gravity_enabled(false)
                                 .translation(na::Vector3::new(N::from_f32(x).unwrap(), N::from_f32(y).unwrap(), N::from_f32(z).unwrap()))
                                 .status(BodyStatus::Static)
-                                .rotation(na::Vector3::new(na::zero(), na::convert(69.907), na::zero()))
+                                .rotation(na::Vector3::new(na::zero(), na::convert(69.9), na::zero()))
                                 .build();
 
         let rb_handle = self.bodies.insert(rb);
