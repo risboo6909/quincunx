@@ -21,9 +21,13 @@ const PINS_INIT_OFFSET_Y: f32 = 2.1;
 const BALL_INIT_OFFST_Y: f32 = 6f32;
 const BOARD_HEIGHT: f32 = 15f32;
 const BOARD_WIDTH: f32 = 6f32;
+const PIN_SIDE: f32 = 0.16;
+const PIN_HEIGHT: f32 = 0.12;
 
 const BALLS_COUNT: usize = 500;
 const BALL_RADIUS: f32 = 0.07;
+
+const PARTITION_HEIGHT: f32 = 4f32;
 
 pub struct World<N: na::RealField> {
     pub mworld: DefaultMechanicalWorld<N>,
@@ -213,7 +217,7 @@ impl<'a, N: na::RealField> World<N> {
         }
 
         let mut boxx = self.make_box(window, x, y, z, BOARD_WIDTH, 0.1, BOARD_HEIGHT, 0.0);
-        boxx.set_color(0.0, 1.0, 0.0);
+        boxx.set_color(0.0, 0.7, 0.0);
 
         let mut border1 = self.make_box(
             window,
@@ -275,38 +279,39 @@ impl<'a, N: na::RealField> World<N> {
         );
         right.set_color(0.0, 0.0, 1.0);
 
-        let part_height = 4.0;
-
         for n in 0..13 {
             let mut part = self.make_box(
                 window,
                 x - 0.5 * BOARD_WIDTH + 0.5 * n as f32,
                 y + 0.2,
-                z + 0.5 * BOARD_HEIGHT - 0.5 * part_height,
+                z + 0.5 * BOARD_HEIGHT - 0.5 * PARTITION_HEIGHT,
                 0.04,
                 0.6,
-                part_height,
+                PARTITION_HEIGHT,
                 0.0,
             );
             part.set_color(0.0, 0.0, 1.0);
         }
 
-        let pin_height = 0.3;
-
         for row in 1..13 {
+
             for col in 0..=(14 - 1 * ((row + 1) % 2)) {
+            
                 let offset_x = if row % 2 == 0 { -2.45 } else { -2.65 };
 
                 self.make_pin(
                     window,
                     x as f32 + offset_x + 0.38 * col as f32,
-                    y as f32 + 0.4 * pin_height,
+                    y as f32 + PIN_HEIGHT,
                     z as f32 - PINS_INIT_OFFSET_Y + 0.38 * row as f32,
-                    0.16,
-                    0.16,
-                    0.16,
+                    PIN_SIDE,
+                    PIN_SIDE,
+                    PIN_SIDE,
                 );
+
             }
+
         }
+        
     }
 }
