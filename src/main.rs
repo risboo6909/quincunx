@@ -59,7 +59,7 @@ fn main() {
 
     window.set_light(Light::StickToCamera);
 
-    let mut state = AppState { cam: cam, world };
+    let mut state = AppState { cam, world };
 
     state.step(&mut window);
 
