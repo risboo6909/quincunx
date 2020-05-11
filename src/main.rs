@@ -2,7 +2,7 @@ mod world;
 
 use kiss3d::light::Light;
 use kiss3d::window::{State, Window};
-use kiss3d::camera::{Camera, FirstPerson};
+use kiss3d::camera::{Camera, ArcBall};
 use kiss3d::planar_camera::PlanarCamera;
 use kiss3d::renderer::Renderer;
 use kiss3d::post_processing::PostProcessingEffect;
@@ -10,9 +10,8 @@ use kiss3d::nalgebra as na;
 
 use world::World;
 
-
 struct AppState {
-    cam: FirstPerson,
+    cam: ArcBall,
     world: World<f32>,
 }
 
@@ -34,8 +33,6 @@ impl State for AppState {
             scene_node.set_local_transformation(*pos);
         }
 
-        // self.c.prepend_to_local_translation(&na::Translation3::new(0.0, -0.001, 0.0));
-
         self.world.mworld.step(
             &mut self.world.gworld, 
             &mut self.world.bodies, 
@@ -43,6 +40,7 @@ impl State for AppState {
             &mut self.world.joint_constraints, 
             &mut self.world.force_generators
         );
+        // self.c.prepend_to_local_translation(&na::Translation3::new(0.0, -0.001, 0.0));
     }
 }
 
@@ -53,22 +51,22 @@ fn main() {
     let mut window = Window::new("Quincunx");
 
     // camera
-    let eye = na::Point3::new(1.0, 1.0, 10.0);
-    let at = na::Point3::origin();
-    let cam = FirstPerson::new(eye, at);
+    let eye = na::Point3::new(0.0, 0.0, 18.0);
+    let at = na::Point3::new(0.0, 0.0, -0.5);
+
+    let mut cam = ArcBall::new(eye, at);
+    cam.set_pitch(-90.0);
+
+    world.make_board(&mut window, 0.0, 0.0, -0.4);
     
-    let mut sphere = world.make_sphere(&mut window, 0.0, 0.0, 0.0, 0.1);
-    sphere.set_color(1.0, 0.0, 0.0);
-
-    let mut boxx = world.make_box(&mut window, 0.0, -3.5, 0.0, 1.0, 0.2, 1.0);
-    boxx.set_color(0.0, 1.0, 0.0);
-
     window.set_light(Light::StickToCamera);
 
-    let state = AppState {
+    let mut state = AppState {
         cam: cam,
         world,
      };
+
+    state.step(&mut window);
 
     window.render_loop(state)
 }
